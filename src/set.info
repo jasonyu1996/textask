@@ -1,8 +1,13 @@
-title: Sample Contest
-setter: jason_yu
+title: Demo Contest
+setter: Jason Yu
 duration: 5h
-time: 20141030
 problem:
 sample
+./
+problem:
+sample1
+./
+problem:
+sample2
 ./
 

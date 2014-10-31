@@ -1,0 +1,4 @@
+The test contains various test cases.
+Each line contains two integers $a$ and $b$.
+The input ends where $a$ and $b$ are both 0.
+ 

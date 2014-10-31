@@ -1,0 +1,108 @@
+% This file was generated using TeXTask
+% 2014/10/31
+
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[BoldFont, SlantFont]{xeCJK}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage[margin=2.5cm]{geometry}
+
+\usepackage{array}
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+
+\setCJKmainfont{SimSun}
+
+
+\setlength{\parskip}{8pt}
+
+\title{Demo Contest}
+\author{}
+\date{}
+\begin{document}
+	\rmfamily
+	\vspace{3cm}
+	\maketitle
+	
+	\begin{center}
+		\large
+		\textbf{Problem setter:} Jason Yu\\
+		\normalsize
+	\end{center}
+
+	\begin{center}
+		\large
+		\textbf{Duration:} 5h
+		\normalsize
+	\end{center}
+	\vspace{3cm} \Large \begin{center}\textbf{Problem List}\end{center} \normalsize \vspace{0.3cm}
+
+	\begin{table}[htbp]
+		\centering\begin{tabular}{|L{3cm}||C{4cm}|C{4cm}|C{4cm}|}
+		\hline \textbf{Name} & sample & sample1 & sample2 \\ 
+		\hline \textbf{Title} & A+B & B+C & YJQ NAIVE \\ 
+		\hline \textbf{Input} & sample.in & sample1.in & sample2.in \\ 
+		\hline \textbf{Output} & sample.out & sample1.out & sample2.out \\ 
+		\hline \textbf{Time limit} & 1000MS & 2000MS & 2000MS \\ 
+		\hline \textbf{Memory limit} & 256MB & 2MB & 2MB \\ 
+		\hline \textbf{Test point} & 10 & 10 & 10 \\ 
+		\hline \textbf{Type} & Conventional & Conventional & Conventional \\ 
+		\hline \textbf{Partial score} & No & No & No \\ 
+		\hline \textbf{SpecialJudge} & Yes & No & No \\ 
+		\hline \textbf{Attachment} & Yes & No & No \\ 
+		\hline \textbf{Code len. limit} & 10KB & 10KB & 10KB \\ 
+		\hline \end{tabular}
+	\end{table}
+	\newpage
+	\begin{center}\section*{A+B}\end{center}
+	\subsection*{Background}
+This is a pretty easy problem. Just for testing.
+
+	\subsection*{Description}
+Given two integers $a$ and $b$, you need to output the $a + b$.
+
+	\subsection*{Input}
+The test contains various test cases.
+Each line contains two integers $a$ and $b$.
+The input ends where $a$ and $b$ are both 0.
+ 
+	\subsection*{Output}
+For each test case input $a + b$
+
+
+	\subsection*{Sample}
+	\subsubsection*{Input}
+	{\ttfamily\begin{verbatim}
+10 10
+1 2
+3 4
+0 0
+	\end{verbatim}}
+\rmfamily
+	\subsubsection*{Output}
+	{\ttfamily\begin{verbatim}
+20
+3
+7
+	\end{verbatim}}
+\rmfamily
+	\subsection*{Constraints}
+$|a|, |b| \leqslant 10^8$
+
+	\subsection*{Judging Rules}
+If your output is exactly the same as the standard output, you gain $100\%$ of the score. Otherwise you gain no point for this test point.
+
+
+	\subsection*{Hint}
+Just use the + operator.
+
+	\newpage
+	\begin{center}\section*{B+C}\end{center}
+	\newpage
+	\begin{center}\section*{YJQ NAIVE}\end{center}
+	\newpage
+\end{document}
