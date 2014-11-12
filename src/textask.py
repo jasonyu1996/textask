@@ -60,8 +60,8 @@ class Task:
 		return True;
 
 
-print '\tTeXTask 0.1';
-print;
+#print '\tTeXTask 0.1';
+#print;
 
 def printUsage():
 	print 'Usage: -i <input_path> [-o <output_path>]';
@@ -116,10 +116,10 @@ def printNewPage():
 	fout.write('	\\newpage\n');
 
 def printLeading(con):
-	fout.write(('	\subsection*{%s}\n' % (con)).decode('gbk'));
+	fout.write(('	\\subsection*{%s}\n' % (con)).decode('gbk'));
 
 def printSubleading(con):
-	fout.write(('	\subsubsection*{%s}\n' % (con)).decode('gbk'));
+	fout.write(('	\\subsubsection*{%s}\n' % (con)).decode('gbk'));
 
 def printContent(ta, leading, suf):
 	fname = os.path.join(ta.path, ta.name + '.' + suf);
@@ -229,6 +229,7 @@ fout.write('''\\begin{document}
 	\\rmfamily
 	\\vspace{3cm}
 	\\maketitle
+	\\thispagestyle{empty}
 	''');
 
 if setter != '':
@@ -327,7 +328,7 @@ fout.write('''		\hline \\end{tabular}
 printNewPage();
 
 for t in tasks:
-	fout.write(('''	\\begin{center}\section*{%s}\\end{center}\n''' % (t.title)).decode('gbk'));
+	fout.write(('''	\\begin{center}\\section*{%s}\\end{center}\n''' % (t.title)).decode('gbk'));
 	printContent(t, 'Background', 'bg');
 	printContent(t, 'Description', 'desc');
 	printContent(t, 'Input', 'input');
