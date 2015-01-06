@@ -14,13 +14,13 @@ class Task:
 		self.testpoint = '10';
 		self.time = '1000MS';
 		self.memory = '256MB';
-		self.spj = 'No';
-		self.part = 'No';
-		self.ty = 'Conventional';
+		self.spj = '否';
+		self.part = '否';
+		self.ty = '传统';
 		self.codelen = '10KB';
 		self.isuf = 'in';
 		self.osuf = 'out';
-		self.add = 'No';
+		self.add = '否';
 
 	def load(self):
 		fname = os.path.join(self.path, self.name + '.cfg');
@@ -139,12 +139,12 @@ def printSample(ta):
 		fname2 = os.path.join(ta.path, '%s.%d.%s' % (ta.name, i, ta.osuf));
 		if checkFile(fname1) == 0 and checkFile(fname2) == 0:
 			if i == 0:
-				printLeading('Sample');
-			printSubleading('Input');
+				printLeading('样例');
+			printSubleading('输入');
 			fout.write('	{\\ttfamily\\begin{verbatim}\n');
 			printFile(fname1);
 			fout.write('	\\end{verbatim}}\n\\rmfamily\n');
-			printSubleading('Output');
+			printSubleading('输出');
 			fout.write('	{\\ttfamily\\begin{verbatim}\n');
 			printFile(fname2);
 			fout.write('	\\end{verbatim}}\n\\rmfamily\n');
@@ -161,6 +161,7 @@ fout.write('''\\documentclass[a4paper, 11pt]{article}
 
 \\usepackage[BoldFont, SlantFont]{xeCJK}
 \\usepackage{amssymb}
+\\usepackage{amsmath}
 \\usepackage{graphicx}
 \\usepackage{verbatim}
 \\usepackage[margin=2.5cm]{geometry}
@@ -171,6 +172,8 @@ fout.write('''\\documentclass[a4paper, 11pt]{article}
 \\newcolumntype{C}[1]{>{\\PreserveBackslash\\centering}p{#1}}
 \\newcolumntype{R}[1]{>{\\PreserveBackslash\\raggedleft}p{#1}}
 \\newcolumntype{L}[1]{>{\\PreserveBackslash\\raggedright}p{#1}}
+
+\\DeclareMathOperator{\\E}{E}
 
 \\setCJKmainfont{SimSun}
 
@@ -235,23 +238,26 @@ fout.write('''\\begin{document}
 	\\thispagestyle{empty}
 	''');
 
+fout.write('''
+	\\begin{table}[htbp]
+		\\centering\\large\\begin{tabular}{rl}
+	''');
+
 if setter != '':
 	fout.write(('''
-	\\begin{center}
-		\\large
-		\\textbf{Problem setter:} %s\\\\
-		\\normalsize
-	\\end{center}
+			\\textbf{出题人}  & %s \\\\
 ''' % (setter)).decode('gbk'));
 
 if duration != '':
 	fout.write(('''
-	\\begin{center}
-		\\large
-		\\textbf{Duration:} %s
-		\\normalsize
-	\\end{center}
+		\\textbf{时长} & %s \\\\
 ''' % (duration)).decode('gbk'));
+
+fout.write('''
+		\\end{tabular}
+	\\end{table}
+	''');
+
 
 fout.write('	\\vspace{3cm} \\Large \\begin{center}\\textbf{Problem List}\\end{center} \\normalsize \\vspace{0.3cm}\n');
 
@@ -264,62 +270,62 @@ for i in range(0, len(tasks)):
 
 fout.write('}\n');
 
-printHead('Name');
+printHead('名称');
 for t in tasks:
 	printItem(t.name);
 printNewLine();
 
-printHead('Title');
+printHead('标题');
 for t in tasks:
 	printItem(t.title);
 printNewLine();
 
-printHead('Input');
+printHead('输入');
 for t in tasks:
 	printItem(t.name + '.' + t.isuf);
 printNewLine();
 
-printHead('Output');
+printHead('输出');
 for t in tasks:
 	printItem(t.name + '.' + t.osuf);
 printNewLine();
 
-printHead('Time limit');
+printHead('时间限制');
 for t in tasks:
 	printItem(t.time);
 printNewLine();
 
-printHead('Memory limit');
+printHead('空间限制');
 for t in tasks:
 	printItem(t.memory);
 printNewLine();
 
-printHead('Test point');
+printHead('测试点数目');
 for t in tasks:
 	printItem(t.testpoint);
 printNewLine();
 
-printHead('Type');
+printHead('类型');
 for t in tasks:
 	printItem(t.ty);
 printNewLine();
 
-printHead('Partial score');
+printHead('部分分');
 for t in tasks:
 	printItem(t.part);
 printNewLine();
 
-printHead('SpecialJudge');
+printHead('SPJ');
 for t in tasks:
 	printItem(t.spj);
 printNewLine();
 
-printHead('Attachment');
+printHead('附加文件');
 for t in tasks:
 	printItem(t.add);
 printNewLine();
 
-printHead('Code len. limit');
+printHead('代码长度限制');
 for t in tasks:
 	printItem(t.codelen);
 printNewLine();
@@ -332,15 +338,16 @@ printNewPage();
 
 for t in tasks:
 	fout.write(('''	\\begin{center}\\section*{%s}\\end{center}\n''' % (t.title)).decode('gbk'));
-	printContent(t, 'Background', 'bg');
-	printContent(t, 'Description', 'desc');
-	printContent(t, 'Input', 'input');
-	printContent(t, 'Output', 'output');
+	fout.write('	\\vspace{2cm}\n');
+	printContent(t, '背景', 'bg');
+	printContent(t, '描述', 'desc');
+	printContent(t, '输入', 'input');
+	printContent(t, '输出', 'output');
 	printSample(t);
-	printContent(t, 'Constraints', 'cst');
-	printContent(t, 'Judging Rules', 'rule');
-	printContent(t, 'Hint', 'hint');
-	printContent(t, 'Notes', 'notes');
+	printContent(t, '限制', 'cst');
+	printContent(t, '评分规则', 'rule');
+	printContent(t, '提示', 'hint');
+	printContent(t, '备注', 'notes');
 	printNewPage();
 
 fout.write('\\end{document}\n');
